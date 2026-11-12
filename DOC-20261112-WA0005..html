@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffe4ed">
+  <title>I'm Sorry, Nidhi 💗</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; overflow-x: hidden;
+      display: grid; place-items: center; padding: 24px;
+      font-family: Georgia, "Times New Roman", serif;
+      color: #63384b;
+      background: radial-gradient(circle at top left, #fff7fa, transparent 42%),
+                  linear-gradient(145deg, #ffe6ef, #f8c7d9 55%, #fcecf2);
+    }
+    .petals { position: fixed; inset: 0; pointer-events: none; overflow: hidden; }
+    .petal { position: absolute; bottom: -40px; opacity: .6; animation: rise linear infinite; }
+    @keyframes rise { to { transform: translateY(-115vh) rotate(360deg); opacity: 0; } }
+    .card {
+      position: relative; z-index: 1; width: min(100%, 470px);
+      padding: 34px 27px; text-align: center;
+      border: 1px solid #ffffffc9; border-radius: 28px;
+      background: #fffafceF; box-shadow: 0 18px 55px #9d456526;
+      backdrop-filter: blur(8px);
+    }
+    .eyebrow { font: 600 11px/1.4 Arial, sans-serif; letter-spacing: 3px; color: #b46b87; text-transform: uppercase; }
+    .icon { font-size: 54px; margin: 16px 0 10px; }
+    h1 { margin: 8px 0 14px; color: #b83e70; font-size: clamp(32px, 8vw, 43px); }
+    p { font: 16px/1.8 Arial, sans-serif; margin: 13px 0; }
+    .muted { color: #956c7d; font-size: 13px; }
+    button {
+      margin-top: 17px; border: 0; border-radius: 999px;
+      padding: 14px 24px; color: white; background: #cf5b86;
+      font: 600 14px Arial, sans-serif; cursor: pointer;
+      box-shadow: 0 8px 18px #cf5b8640; transition: transform .2s, background .2s;
+    }
+    button:hover { transform: translateY(-2px); background: #b94370; }
+    button:focus-visible { outline: 3px solid #8f3159; outline-offset: 4px; }
+    .hidden { display: none; }
+    .divider { width: 55px; height: 1px; background: #e9b5c9; margin: 22px auto; }
+    .signature { color: #b34c76; font-style: italic; margin-top: 20px; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="petals" id="petals" aria-hidden="true"></div>
+
+  <main class="card" id="intro">
+    <div class="eyebrow">A little message for you</div>
+    <div class="icon" aria-hidden="true">💌</div>
+    <h1>Hey, Nidhi!</h1>
+    <p>I know things haven't been okay between us...</p>
+    <p class="muted">But there's something I really wanted to tell you.</p>
+    <button id="openLetter">Open my message 💗</button>
+  </main>
+
+  <main class="card hidden" id="letter">
+    <div class="eyebrow">From my heart</div>
+    <div class="icon" aria-hidden="true">🥺</div>
+    <h1>I'm Sorry, Nidhi</h1>
+    <p>
+      I don't know how things became so difficult between us.
+      If anything I said or did hurt you, I'm genuinely sorry.
+    </p>
+    <p>
+      I don't want one fight to erase the good memories and the
+      friendship we shared. Your friendship matters to me, and
+      honestly, I miss talking to you.
+    </p>
+    <p>
+      I'm not asking you to forget everything instantly or reply
+      before you're ready. I just wanted to say sorry, sincerely.
+    </p>
+    <div class="divider"></div>
+    <p><strong>Can we talk again, whenever you're comfortable?</strong></p>
+    <p class="signature">No ego. No pressure. Just a friend who is sorry. ❤️</p>
+    <button id="finalButton">Sending you a little smile 😊</button>
+    <p class="muted hidden" id="closing">Thank you for reading this, Nidhi. Take care. 💗</p>
+  </main>
+
+  <script>
+    const intro = document.getElementById('intro');
+    const letter = document.getElementById('letter');
+    document.getElementById('openLetter').addEventListener('click', () => {
+      intro.classList.add('hidden');
+      letter.classList.remove('hidden');
+    });
+    document.getElementById('finalButton').addEventListener('click', () => {
+      document.getElementById('closing').classList.remove('hidden');
+    });
+
+    const petals = document.getElementById('petals');
+    const symbols = ['♡', '💗', '✿', '♥'];
+    for (let i = 0; i < 18; i++) {
+      const item = document.createElement('span');
+      item.className = 'petal';
+      item.textContent = symbols[i % symbols.length];
+      item.style.left = (Math.random() * 100) + '%';
+      item.style.animationDuration = (9 + Math.random() * 9) + 's';
+      item.style.animationDelay = (-Math.random() * 15) + 's';
+      item.style.fontSize = (15 + Math.random() * 17) + 'px';
+      petals.appendChild(item);
+    }
+  </script>
+</body>
+</html>
